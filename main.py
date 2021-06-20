@@ -7,12 +7,9 @@ import HandOperation as op
 top, right, bottom, left = 10, 350, 225, 590
 
 cap = cv2.VideoCapture(0)
-#cap.set(3, wCam)
-#cap.set(4, hCam)
 
-detector = htm.handDetector(detectionCon=0.80)
+detector = htm.handDetector(detectionCon=0.75)
 
-#tipIds = [4, 8, 12, 16, 20]
 font = cv2.FONT_HERSHEY_SIMPLEX
 result = 0;
 while True:
@@ -35,6 +32,11 @@ while True:
         isSoFar = operation.findhandIstoFar()
         if( isSoFar == True):
             cv2.putText(img,'Hand is in so far',(0,50), font, 1, (0,0,255), 2, cv2.LINE_AA)
+        isStop = operation.findStop()
+        if( isStop == True):
+            cv2.putText(img,'Stop',(0,80), font, 1, (0,0,255), 2, cv2.LINE_AA)
+        else:
+            cv2.putText(img,'Go head',(0,80), font, 1, (0,0,255), 2, cv2.LINE_AA)
         
     cv2.imshow("Image", img)
   
@@ -44,3 +46,8 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
+
+
+
+
+
