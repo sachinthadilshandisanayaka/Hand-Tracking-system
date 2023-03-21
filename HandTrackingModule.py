@@ -1,6 +1,5 @@
 import cv2
 import mediapipe as mp
-import time
 
 
 class handDetector():
@@ -18,7 +17,7 @@ class handDetector():
     def findHands(self, img, draw=True):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.hands.process(imgRGB)
-        # print(results.multi_hand_landmarks)
+        #print(self.results.multi_hand_landmarks)
 
         if self.results.multi_hand_landmarks:
             for handLms in self.results.multi_hand_landmarks:
@@ -37,11 +36,11 @@ class handDetector():
             for id, lm in enumerate(myHand.landmark):
             
                 h, w, c = img.shape
-               
+            
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 #if(id == 0):
                  #   print(id, int(lm.z * 100000 * -1))
-                #print(id, cx, cy)
+                print(id, cx, cy)
                 lmList.append([id, cx, cy])
                 if draw:
                     cv2.circle(img, (cx, cy), 15, (255, 0, 255), cv2.FILLED)

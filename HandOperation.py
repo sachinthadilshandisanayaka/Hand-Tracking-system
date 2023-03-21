@@ -8,6 +8,7 @@ class handDetector():
         self.minHandSize = 50
         
     def findhandIstoClose(self):
+        # [0][2] - 0 means hand lankmark number, 2 means y axis
         result =  self.lmList[0][2] - self.lmList[9][2]
         #print(result)
         if(result > self.maxHandSize):
